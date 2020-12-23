@@ -1,6 +1,7 @@
 from aiogram import types
 from loader import dp
 
+from loader import bot
 # варианта два - либо через декоратор регистрировать хендлеры
 # либо через registration
 @dp.message_handler()
@@ -13,6 +14,7 @@ async def bot_echo(message: types.Message):
     # получим chat_id и text
     chat_id = message.from_user.id
     text = message.text
+    await bot.send_message(chat_id=chat_id, text=text)
 
 # получим объект бота из диспатчера
 # bot = dp.bot
@@ -21,10 +23,10 @@ async def bot_echo(message: types.Message):
 # bot = Bot.get_current()
 # получим объект бота из модуля loader
 
-from loader import bot
+
 
 # Отправим сообщение пользователю (1 вариант)
-await bot.send_message(chat_id=chat_id, text=text)
+
 # используем встроенный метод answer / reply
 # await message.answer(text=text)
 
